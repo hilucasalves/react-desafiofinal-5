@@ -22,3 +22,7 @@ code {
 .selected-year {
   text-decoration: underline;
 }
+
+tbody tr:nth-child(odd) {
+  background-color: lightgray;
+}

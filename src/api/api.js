@@ -1,4 +1,5 @@
 import axiosModule from 'axios';
+import { helperGetTeamImageName } from '../helpers/helpers';
 
 const axios = axiosModule.create({ baseURL: 'http://localhost:3002' });
 
@@ -44,9 +45,12 @@ async function apiGetChampionshipData(year) {
       hostData = sanitizeData(hostData);
       visitorData = sanitizeData(visitorData);
 
+      const hostImageName = helperGetTeamImageName(host);
+      const visitorImageName = helperGetTeamImageName(visitor);
+
       return [
-        { teamName: host, ...hostData },
-        { teamName: visitor, ...visitorData },
+        { teamName: host, imageName: hostImageName, ...hostData },
+        { teamName: visitor, imageName: visitorImageName, ...visitorData },
       ];
     })
     .sort((a, b) => b.points - a.points);
